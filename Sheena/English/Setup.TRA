@@ -1,0 +1,26 @@
+@0    = ~Install A Half Dragon Tale~
+@1    = ~Sheena~
+@2    = ~When asked about her past, Sheena mentions her stepfather as being the only father that ever counted.~
+@3    = ~Shapeshift into her natural form~
+@4    = ~Shapeshift into human~
+@5    = ~Half dragon breath~
+@6    = ~Sheena's avenger~
+@7    = ~This extremely large two handed sword was crafted by Sheena's stepfather, a renowned weapon smith in Faerun. According to Sheena, the blade was crafted by using the tentacle of an illithid and the heart of a fire giant, but how her stepfather acquired such precious and rare artefacts remains unknown. 
+
+STATISTICS
+
+Combat Abilities: 
+Opponent
+Each hit makes the target receive a cumulative 2 point of fire damage
+Each hit also lowers the fire resistance of the target by 5 point unless a saving throw vs breath weapon at a penalty of 6 is made
+Opponent
+10% chance of stunning the target for one and a half round with no save
+THAC0: +3 bonus
+Damage:  1D12 +3
+Damage type:  slashing
+Weight:  10
+Speed Factor: 2
+Proficiency Type: Two handed sword
+Type:  2-handed
+Requires: 16 Strength
+~

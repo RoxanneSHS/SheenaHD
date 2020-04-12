@@ -1,0 +1,23 @@
+IF
+Global("KH#SheenaExists","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("KH#SheenaExists","GLOBAL",1)
+CreateCreature("K#Sheen2",[2273.524],3)
+Wait(1)
+ActionOverride("K#Sheen2",MakeGlobal())
+Continue()
+END
+
+IF
+Global("KH#SheenaExists","GLOBAL",2)
+THEN
+RESPONSE #100
+SetGlobal("KH#SheenaExists","GLOBAL",3)
+ClearAllActions()
+CreateVisualEffectObject("SPPOLYMP","K#Sheen2")
+Deactivate("K#Sheen2")
+Wait(1)
+CreateCreature("K#Sheena",[2276.529],3)
+END
+

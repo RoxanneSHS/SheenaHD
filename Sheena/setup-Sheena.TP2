@@ -1,0 +1,128 @@
+BACKUP ~Sheena\backup~
+//AUTHOR ~j_f_kalban@caramail.com~
+SUPPORT ~Roxanne - http://baldursextendedworld.com/Vanilla_Forums/categories/mod-help or roxanne@baldursextendedworld.com~
+
+VERSION ~v3.0~
+
+AUTO_TRA ~Sheena/%s~
+
+ALWAYS
+  ACTION_IF GAME_IS ~eet~ BEGIN
+    OUTER_SET bg2_chapter = 12
+  END ELSE BEGIN
+    OUTER_SET bg2_chapter = 0
+  END
+  OUTER_FOR (i=1; i<=10; i=i+1) BEGIN
+    OUTER_SET bg2_chapter = bg2_chapter + 1
+    OUTER_SPRINT name_source ~bg2_chapter_%i%~
+    OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+  END
+END
+
+LANGUAGE ~English~
+	 ~English~
+         ~Sheena/English/setup.tra~
+
+BEGIN @0
+
+COPY ~Sheena\Sound~ ~Override~
+COPY ~Sheena\Red~ ~Override~
+
+COPY ~Sheena\Portraits\SheenaS.bmp~ ~Override\SheenaS.bmp~
+COPY ~Sheena\Portraits\Sheena1L.bmp~ ~Override\Sheena1S.bmp~
+COPY ~Sheena\Portraits\SheenaL.bmp~ ~Override\SheenaM.bmp~
+COPY ~Sheena\Portraits\Sheena1L.bmp~ ~Override\Sheena1M.bmp~
+COPY ~Sheena\Portraits\Sheena1L.bmp~ ~Override\Sheena1L.bmp~
+COPY ~Sheena\Portraits\SheenaL.bmp~ ~Override\SheenaL.bmp~
+
+COPY ~Sheena\Cre\K#Sheena.cre~ ~override~
+  SAY NAME1 @1
+  SAY NAME2 @1
+  SAY BIO @2
+COPY ~Sheena\cre\K#FIRKRA.cre~ ~override~
+COPY ~Sheena\cre\K#FIRMAG.cre~ ~override~
+COPY ~Sheena\cre\K#ORC.cre~ ~override~
+COPY ~Sheena\cre\K#CUTSHE.cre~ ~override~
+COPY ~Sheena\Cre\K#Sheen2.cre~ ~override~
+  SAY NAME1 @1
+  SAY NAME2 @1
+  SAY BIO @2
+
+COPY ~Sheena\Spell\K#PolyS.spl~ ~override\K#PolyS.spl~
+SAY NAME1 @3
+SAY NAME2 @3
+COPY ~Sheena\Spell\K#PolyB.spl~ ~override\K#PolyB.spl~
+SAY NAME1 @4
+SAY NAME2 @4
+COPY ~Sheena\Spell\K#ANIM.bam~ ~override\K#ANIM.bam~
+COPY ~Sheena\Spell\K#REDDRA.spl~ ~override\K#REDDRA.spl~
+SAY NAME1 @5
+SAY NAME2 @5
+
+COPY ~Sheena\Spell\K#ENABLE.spl~ ~override\K#ENABLE.spl~
+COPY ~Sheena\Spell\K#DSABLE.spl~ ~override\K#DSABLE.spl~
+COPY ~Sheena\Spell\K#PolyS1.spl~ ~override\K#PolyS1.spl~
+COPY ~Sheena\Spell\K#PCCON.spl~ ~override\K#PCCON.spl~
+COPY ~Sheena\Spell\K#SHECON.spl~ ~override\K#SHECON.spl~
+COPY ~Sheena\Spell\K#KILLS.spl~ ~override\K#KILLS.spl~
+COPY ~Sheena\Spell\K#POLYD.spl~ ~override\K#POLYD.spl~
+
+COPY_EXISTING ~FIRKRA02.CRE~ ~override~
+ADD_CRE_ITEM ~KEY09~ #0 #0 #0 ~IDENTIFIED~ ~INV~
+
+ACTION_IF NOT FILE_EXISTS ~Music\PGBlank.mus~ THEN BEGIN
+COPY_EXISTING ~songlist.2da~ ~override~
+REPLACE_TEXTUALLY
+~0       No_music        ****~
+~0       MUSBLANK         MUSBLANK.MUS~
+COPY ~Sheena/Mus/Musblank.mus~ ~music/Musblank.mus~
+END
+
+COPY ~Sheena\items\K#SheSwd.itm~ ~override\K#SheSwd.itm~
+SAY NAME1 @6
+SAY NAME2 @6
+SAY DESC @7
+SAY 0x136 @1
+
+COPY ~Sheena\items\K#SheSw2.itm~ ~override\K#SheSw2.itm~
+SAY NAME1 @6
+SAY NAME2 @6
+SAY DESC @7
+SAY 0x136 @1
+
+COMPILE EVALUATE_BUFFER ~Sheena\D~  USING ~Sheena/%s/Sheena.tra~
+
+COMPILE ~Sheena\Baf/K#Sheena.baf~
+COMPILE ~Sheena\Baf/SheenaD.baf~
+COMPILE ~Sheena\Baf/K#RITUAL.baf~
+COMPILE ~Sheena\Baf\K#1203.baf~  USING ~Sheena/%s/Sheena.tra~
+COMPILE ~Sheena\Baf\SHEMOV1a.baf~
+COMPILE ~Sheena\Baf\SHEMOV1b.baf~
+COMPILE ~Sheena/Baf/K#SheFix.baf~ USING ~Sheena/%s/Sheena.tra~
+EXTEND_TOP ~INITRG25.bcs~ ~Sheena\Baf/AdlonTop.baf~
+EXTEND_TOP ~NALIA.bcs~ ~Sheena\Baf/k#NALIA.baf~
+EXTEND_TOP ~MAZZY.bcs~ ~Sheena\Baf/k#mazz.baf~
+EXTEND_TOP ~KORGAN.bcs~ ~Sheena\Baf/K#Korg.baf~
+EXTEND_TOP ~ANOMEN.bcs~ ~Sheena\Baf/K#ANOMEN.baf~
+EXTEND_BOTTOM ~AR1202.bcs~ ~Sheena\Baf/K#AR1202.baf~
+EXTEND_TOP ~AR1202.bcs~ ~Sheena\Baf\K#1202.baf~
+EXTEND_TOP ~baldur.bcs~ ~Sheena\Baf\Exchange.baf~
+EXTEND_TOP ~baldur25.bcs~ ~Sheena\Baf\Exchange.baf~
+
+
+APPEND ~pdialog.2da~
+~K#SHEENA        SHEENAP           SHEENAJ          SHEENAD         SHEENAP               SHEENAJ                SHEENAD                   K#SHEENA~
+UNLESS ~K#Sheena~
+
+APPEND ~interdia.2da~
+  ~K#Sheena      BSHEENA       BSHEENA~
+UNLESS ~K#Sheena~
+
+APPEND ~pdialog.2da~
+~K#SHEEN2        SHEENAP           SHEENAJ          SHEENAD         SHEENAP               SHEENAJ                SHEENAD                   K#SHEENA~
+UNLESS ~K#Sheen2~
+
+APPEND ~interdia.2da~
+  ~K#Sheen2      BSHEENA       BSHEENA~
+UNLESS ~K#Sheen2~
+

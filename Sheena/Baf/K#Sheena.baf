@@ -1,0 +1,911 @@
+IF
+  Global("K#SheenaSleptWithPC","GLOBAL",1)
+  Global("SheenaRomanceActive","GLOBAL",2)
+  Global("SheenaMakeRain","LOCALS",2)
+  CombatCounter(0)
+  Global("SheenaLoveTalk","LOCALS",11)
+THEN
+  RESPONSE #100
+    IncrementGlobal("SheenaLoveTalk","LOCALS",1)
+    Interact(Player1)
+END
+
+IF
+Global("SHEENAPCAREONE","GLOBAL",1)
+Die()
+THEN
+RESPONSE #100
+ActionOverride(Myself,Kill(Player1))
+END
+
+IF
+Or(2)
+!InParty("K#Sheena")
+!InParty(Myself)
+Global("SheenaJoined","GLOBAL",1)
+Global("K#SheenaOut","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SheenaOut","GLOBAL",1)
+SetLeavePartyDialogFile()
+END
+
+IF
+Global("KH#SheenaExists","GLOBAL",1)
+Global("SPRITE_IS_DEADFIRKRA02","GLOBAL",1)
+OR(6)
+Detect(Player1)
+Detect(Player2)
+Detect(Player3)
+Detect(Player4)
+Detect(Player5)
+Detect(Player6)
+THEN
+RESPONSE #100
+SetGlobal("KH#SheenaExists","GLOBAL",2)
+END
+
+IF
+Global("KH#SheenaExists","GLOBAL",3)
+InParty("K#Sheena")
+THEN
+RESPONSE #100
+SetGlobal("KH#SheenaExists","GLOBAL",4)
+AddSpecialAbility("K#Polys")
+END
+
+IF
+Global("SheenRHD","GLOBAL",1)
+HasItem("K#SheSwd",Myself)
+THEN
+RESPONSE #100
+DestroyItem("K#SheSwd")
+Continue()
+END
+
+IF
+Global("SheenRHD","GLOBAL",0)
+HasItem("K#SheSw2",Myself)
+THEN
+RESPONSE #100
+DestroyItem("K#SheSw2")
+Continue()
+END
+
+IF
+Global("SheenRHD","GLOBAL",1)
+!HasItem("K#SheSw2",Myself)
+THEN
+RESPONSE #100
+GiveItemCreate("K#SheSw2",Myself,0,0,0)
+Wait(2)
+FillSlot(SLOT_WEAPON)
+Wait(1)
+EquipMostDamagingMelee()
+Continue()
+END
+
+IF
+Global("SheenRHD","GLOBAL",0)
+!HasItem("K#SheSwd",Myself)
+THEN
+RESPONSE #100
+GiveItemCreate("K#SheSwd",Myself,0,0,0)
+Wait(2)
+FillSlot(SLOT_WEAPON)
+Wait(1)
+EquipMostDamagingMelee()
+Continue()
+END
+
+IF
+Global("KH#SheenaExists","GLOBAL",4)
+InParty("K#Sheen2")
+!InMyArea("K#Sheena")
+THEN
+RESPONSE #100
+SetGlobal("KH#SheenaExists","GLOBAL",5)
+AddSpecialAbility("K#Polyb")
+AddSpecialAbility("K#reddra")
+END
+
+IF
+ Global("SheenRHD","GLOBAL",1)
+ Global("K#BENAB","GLOBAL",1)
+ Global("UnlockPolyHD","GLOBAL",0)
+ InParty(Myself)
+ OR(4)
+ AreaType(CITY)
+ AreaType(FOREST)
+ AreaCheck("AR1100")
+ AreaCheck("AR1204")
+ THEN
+ RESPONSE #100
+SetGlobal("KChange1","Global",3)
+ END
+
+IF
+Global("K#SeeAbazlair","GLOBAL",0)
+AreaCheck("ar6004")
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAbazlair","GLOBAL",1)
+SetGlobal("KChange1","Global",1)
+END
+
+IF
+Global("PlayerLooksLikeDrow","GLOBAL",1)
+Global("SheenaLookLikeDrow","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("SheenaLookLikeDrow","GLOBAL",1)
+ActionOverride(Myself,ApplySpellRES("K#DSABLE",Myself))
+END
+
+IF
+Global("SheenRHD","GLOBAL",0)
+AreaCheck("AR2102")
+!Global("StartsSoon","GLOBAL",1)
+!Global("PlayerLooksLikeDrow","GLOBAL",1)
+THEN
+RESPONSE #100
+ApplySpellRES("K#POLYS",Myself)
+END
+
+IF
+HOTKEY(S)
+THEN
+RESPONSE #100
+ActionOverride(Myself,StartCutScene("K#SheFix"))
+END
+
+IF
+ Global("SheenRHD","GLOBAL",1)
+ Global("K#BENAB","GLOBAL",0)
+ InParty(Myself)
+ Global("UnlockPolyHD","GLOBAL",0)
+ OR(5)
+ AreaType(CITY)
+ AreaType(FOREST)
+ AreaCheck("AR1100")
+ AreaCheck("AR1204")
+ AreaCheck("AR2300")
+ THEN
+ RESPONSE #100
+ Wait(2)
+ ActionOverride(Myself,ApplySpellRES("K#POLYB", Myself))
+ END
+
+IF
+ Global("SheenRHD","GLOBAL",0)
+ Global("K#BENAB","GLOBAL",1)
+ Global("UnlockPolyHD","GLOBAL",0)
+ InParty(Myself)
+ OR(4)
+ AreaType(CITY)
+ AreaType(FOREST)
+ AreaCheck("AR1100")
+ AreaCheck("AR1204")
+ THEN
+ RESPONSE #100
+ ActionOverride(Myself,ApplySpellRES("K#DSABLE",Myself))
+ END
+
+
+IF
+ Global("SheenRHD","GLOBAL",0)
+ Global("K#BENAB","GLOBAL",0)
+ InParty(Myself)
+ !AreaType(CITY)
+ !AreaCheck("AR1100")
+ !AreaType(FOREST)
+ !AreaCheck("AR1204")
+!Global("PlayerLooksLikeDrow","GLOBAL",1)
+ THEN
+ RESPONSE #100
+ ActionOverride(Myself,ApplySpellRES("K#ENABLE",Myself))
+ END
+
+IF
+ Global("K#BENAB","GLOBAL",0)
+ Global("UnlockPolyHD","GLOBAL",1)
+ !Global("PlayerLooksLikeDrow","GLOBAL",1)
+THEN
+ RESPONSE #100
+ ActionOverride(Myself,ApplySpellRES("K#ENABLE",Myself))
+END
+
+IF
+ Global("SheenaMatch","GLOBAL",0)
+ Global("CheckSheenaMatch","GLOBAL",0)
+ InParty("K#Sheena")
+THEN
+ RESPONSE #100
+  SetGlobal("CheckSheenaMatch","GLOBAL",1)
+  SetGlobal("SheenaMatch","GLOBAL",1)
+  SetGlobal("SheenaTalk","LOCALS",1)
+  RealSetGlobalTimer("SheenaTalkTime","GLOBAL",900)
+END
+
+IF
+  !Dead("K#Sheena")
+  !Global("SheenaRomanceActive","GLOBAL",0)
+  !Global("SheenaRomanceActive","GLOBAL",3)
+  Global("SheenaMatch","GLOBAL",1)
+  AreaType(FOREST)
+  AreaType(OUTDOOR)
+  Global("SheenaLovetalk","LOCALS",9)
+  Global("SheenaMakeRain","LOCALS",0)
+THEN
+  RESPONSE #100
+  SetGlobal("SheenaMakeRain","LOCALS",1)
+  RealSetGlobalTimer("SheenaMakeRain","GLOBAL",12)
+  ActionOverride(Myself,Weather(RAIN))
+END
+
+IF
+  RealGlobalTimerExpired("SheenaMakeRain","GLOBAL")
+  Global("SheenaMakeRain","LOCALS",1)
+THEN
+  RESPONSE #100
+  SetGlobal("SheenaMakeRain","LOCALS",2)
+  RestParty()
+END
+
+
+IF
+  InParty("K#Sheena")
+  RealGlobalTimerExpired("SheenaTalkTime","GLOBAL")
+  Global("SheenaMatch","GLOBAL",1)
+  !AreaType(DUNGEON)
+  See(Player1)
+  CombatCounter(0)
+OR(10)
+  Global("SheenaTalk","LOCALS",1)
+  Global("SheenaTalk","LOCALS",3)
+  Global("SheenaTalk","LOCALS",5)
+  Global("SheenaTalk","LOCALS",7)
+  Global("SheenaTalk","LOCALS",9)
+  Global("SheenaTalk","LOCALS",11)
+  Global("SheenaTalk","LOCALS",13)
+  Global("SheenaTalk","LOCALS",15)
+  Global("SheenaTalk","LOCALS",17)
+  Global("SheenaTalk","LOCALS",19)
+ THEN
+ RESPONSE #100
+  IncrementGlobal("SheenaTalk","LOCALS",1)
+  Interact(Player1)
+END
+
+IF
+  InParty("K#Sheena")
+  RealGlobalTimerExpired("SheenaTalkTime","GLOBAL")
+  Global("SheenaMatch","GLOBAL",1)
+OR(10)
+  Global("SheenaTalk","LOCALS",2)
+  Global("SheenaTalk","LOCALS",4)
+  Global("SheenaTalk","LOCALS",6)
+  Global("SheenaTalk","LOCALS",8)
+  Global("SheenaTalk","LOCALS",10)
+  Global("SheenaTalk","LOCALS",12)
+  Global("SheenaTalk","LOCALS",14)
+  Global("SheenaTalk","LOCALS",16)
+  Global("SheenaTalk","LOCALS",18)
+  Global("SheenaTalk","LOCALS",20)
+THEN
+ RESPONSE #100
+   RealSetGlobalTimer("SheenaTalkTime","GLOBAL",3600)//1 HOUR
+   IncrementGlobal("SheenaTalk","LOCALS",1)
+END
+
+IF
+ Global("SheenaMatch","GLOBAL",1)
+ Global("CheckSheenaMatch","GLOBAL",1)
+ Global("SheenaRomanceActive","GLOBAL",0)
+ Gender(Player1,MALE)
+ InParty("K#Sheena")
+ Global("SheenaTalk","LOCALS",21)
+ !Global("ViconiaRomanceActive","GLOBAL",2)
+ !Global("AerieRomanceActive","GLOBAL",2)
+ !Global("JaheiraRomanceActive","GLOBAL",2)
+ THEN
+ RESPONSE #100
+  SetGlobal("SheenaRomanceActive","GLOBAL",2)
+  SetGlobal("SheenaMatch","GLOBAL",1)
+  SetGlobal("SheenaLoveTalk","LOCALS",1)
+  RealSetGlobalTimer("SheenaLoveTalkTime","GLOBAL",3600)
+END
+
+IF
+  InParty("K#Sheena")
+  RealGlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")
+  Global("SheenaMatch","GLOBAL",1)
+  Global("SheenaRomanceActive","GLOBAL",2)
+  !AreaType(DUNGEON)
+  See(Player1)
+  CombatCounter(0)
+OR(5)
+  Global("SheenaLoveTalk","LOCALS",1)
+  Global("SheenaLoveTalk","LOCALS",3)
+  Global("SheenaLoveTalk","LOCALS",5)
+  Global("SheenaLoveTalk","LOCALS",7)
+  Global("SheenaLoveTalk","LOCALS",13)
+   THEN
+ RESPONSE #100
+  PlaySong(0)
+  IncrementGlobal("SheenaLoveTalk","LOCALS",1)
+  Interact(Player1)
+END
+
+IF
+  InParty("K#Sheena")
+  RealGlobalTimerExpired("SheenaLoveTalkTime","GLOBAL")
+  Global("SheenaMatch","GLOBAL",1)
+  Global("SheenaRomanceActive","GLOBAL",2)
+OR(5)
+  Global("SheenaLoveTalk","LOCALS",2)
+  Global("SheenaLoveTalk","LOCALS",4)
+  Global("SheenaLoveTalk","LOCALS",6)
+  Global("SheenaLoveTalk","LOCALS",8)
+  Global("SheenaLoveTalk","LOCALS",14)
+  THEN
+ RESPONSE #100
+   RealSetGlobalTimer("SheenaLoveTalkTime","GLOBAL",3600)
+   IncrementGlobal("SheenaLoveTalk","LOCALS",1)
+END
+
+IF
+  InParty("K#Sheena")
+  Global("K#SheenaFlirtsOff","GLOBAL",1)
+  RealGlobalTimerExpired("K#SheenaFlirtOFF","GLOBAL")
+  Global("SheenaRomanceActive","GLOBAL",2)
+  THEN
+ RESPONSE #100
+  SetGlobal("K#SheenaFlirtsOff","GLOBAL",0)
+  END
+
+IF
+  InParty("K#Sheena")
+  See("Mazzy")
+  !Dead("Mazzy")
+  !AreaType(DUNGEON)
+  CombatCounter(0)
+  RealGlobalTimerExpired("SheenaTalkMazzyTimer","GLOBAL")
+  Or(2)
+  Global("SheenaTalkMazzy","GLOBAL",3)
+  Global("SheenaTalkMazzy","GLOBAL",5)
+ THEN
+ RESPONSE #100
+  PlaySong(0)
+  IncrementGlobal("SheenaTalkMazzy","GLOBAL",1)
+  RealSetGlobalTimer("SheenaTalkMazzyTimer","GLOBAL",3600)
+  Interact("Mazzy")
+END
+
+IF
+  InParty("K#Sheena")
+  See("Mazzy")
+  !Dead("Mazzy")
+  !AreaType(DUNGEON)
+  CombatCounter(0)
+  RealGlobalTimerExpired("SheenaTalkMazzyTimer","GLOBAL")
+  Global("SheenaTalkMazzy","GLOBAL",7)
+ THEN
+ RESPONSE #100
+  PlaySong(0)
+  IncrementGlobal("SheenaTalkMazzy","GLOBAL",1)
+  RealSetGlobalTimer("SheenaTalkMazzyTimer","GLOBAL",3600)
+  Interact("Mazzy")
+END
+
+IF
+  Delay(6)
+  InParty("K#Sheena")
+  InParty("Cernd")
+  !Dead("Cernd")
+  See("Cernd")
+  IsValidForPartyDialog("Cernd")
+  AreaType(FOREST)
+  CombatCounter(0)
+Global("CerndTalkSheena","GLOBAL",0)
+THEN
+ RESPONSE #100
+  PlaySong(0)
+  SetGlobal("CerndTalkSheena","GLOBAL",1)
+  Interact("Cernd")
+END
+
+IF
+InParty("K#Sheena")
+  InParty("Anomen")
+  !Dead("Anomen")
+  See("Anomen")
+  GlobalGT("AnomenIsKnight","GLOBAL",0)//kNIGHT
+  CombatCounter(0)
+  Global("AnomenTalkSheena","GLOBAL",2)
+THEN
+ RESPONSE #100
+  PlaySong(0)
+  SetGlobal("AnomenTalkSheena","GLOBAL",3)
+  Interact("Anomen")
+END
+
+IF
+  Delay(6)
+  InParty("K#Sheena")
+  InParty("Aerie")
+  !Dead("Aerie")
+  See("Aerie")
+  AreaType(Dungeon)
+  Global("SheenRHD","GLOBAL",1)
+  CombatCounter(0)
+  Global("K#SheenaAerie","GLOBAL",0)
+THEN
+ RESPONSE #100
+  PlaySong(0)
+  SetGlobal("K#SheenaAerie","GLOBAL",1)
+  Interact("Aerie")
+END
+
+IF
+  AreaCheck("AR1203")
+  Global("K#SeeFirkraag","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("K#SeeFirkraag","GLOBAL",1)
+    ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+OR(2)
+  HasItem("SCALER","K#Sheena")
+  HasItem("SCALER","K#Sheen2")
+  Global("K#HasRedScales","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("K#HasRedScales","GLOBAL",1)
+    TakePartyItem("SCALER")
+    DestroyItem("SCALER")
+    GiveItemCreate("SCALER",Player1,0,0,0)
+    ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+OR(2)
+   HasItem("PLAT18","K#Sheen2")
+   HasItem("PLAT18","K#Sheena")
+   Global("K#HasRedArmor","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("K#HasRedArmor","GLOBAL",1)
+    TakePartyItem("PLAT18")
+    DestroyItem("PLAT18")
+    GiveItemCreate("PLAT18",Player1,0,0,0)
+    ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+  InParty(Myself)
+  See(Player1)
+  Global("PastPhaere","LOCALS",0)
+  Global("PhaereInnuendo","GLOBAL",2)
+  !Range("Phaere",6)
+  !Global("SheenaRomanceActive","GLOBAL",2)
+  CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("PastPhaere","LOCALS",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+  InParty(Myself)
+  See(Player1)
+  Global("PastRPhaere","LOCALS",0)
+  Global("PhaereInnuendo","GLOBAL",2)
+  !Range("Phaere",6)
+  Global("SheenaRomanceActive","GLOBAL",2)
+  CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("PastRPhaere","LOCALS",1)
+    ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+RealGlobalTimerExpired("SheTalkSlayer","LOCALS")
+Global("SlayerTalkReady","LOCALS",1)
+CombatCounter(0)
+InParty(Myself)
+!StateCheck(Myself,STATE_REALLY_DEAD)
+THEN
+RESPONSE #100
+SetGlobal("SlayerTalkReady","LOCALS",2)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+See("UDSILVER")
+Allegiance("UDSILVER",ENEMY)
+Global("SHEENAUDSILV","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("SHEENAUDSILV","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+AreaCheck("AR0502")
+Global("SheenaEnterTanner","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("SheenaEnterTanner","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+OR(7)
+See("Daumber")
+See("KPUMB01")
+See("PPUMB02")
+See("UDILL02")
+See("UDUMBER02")
+See("UDUMBER")
+See("UMBHUL01")
+Global("K#SeeUmberHulk","GLOBAL",0)
+InParty(Myself)
+!CombatCounter(0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeUmberHulk","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeUmberHulk","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeUmberHulk","GLOBAL",99)
+END
+
+IF
+OR(10)
+See("MINDVAM")//Illithid - mind flayer
+See("MINDUL01")
+See("MINDAL01")
+See("MINDFL01")
+See("UDVAMP")
+See("DAMIND1")
+See("DAMIND2")
+See("DPMON01")
+See("ELEILL01")
+See("ELMIND01")
+InParty(Myself)
+!CombatCounter(0)
+Global("K#SeeIllithids","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeIllithids","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeIllithids","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeIllithids","GLOBAL",99)
+END
+
+IF
+OR(7)
+See("GOLADA01")
+See("GOLKILL2")
+See("KPGOL04")
+See("GOLIRO01")
+See("SHIRON")
+See("Adamantite Golem")
+See("Iron Golem")
+InParty(Myself)
+!CombatCounter(0)
+Global("K#SeeAdamantineGolem","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAdamantineGolem","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeAdamantineGolem","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAdamantineGolem","GLOBAL",99)
+END
+
+IF
+OR(13)
+See("BEHELD01")
+See("HELLBEH1")
+See("HELLBEH2")
+See("HL0RB")
+See("OBSDEM03")
+See("BEHOBS01")
+See("BEHOLD01")
+See("BESPE01")
+See("BEHUND01")
+See("CULTBH3")
+See("RINGBEH01")
+See("UDBEHO01")
+See("UDBEHO02")
+InParty(Myself)
+Global("K#SeeOrbs","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeOrbs","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeOrbs","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeOrbs","GLOBAL",99)
+END
+
+
+IF
+OR(8)
+See("LICH01")
+See("CEDELICH")
+See("HLKANG")
+See("HLLICH")
+See("HLSHADE")
+See("HLSHANG")
+See("Lich")
+See("JARLICH")
+InParty(Myself)
+Global("K#SeeLich","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeLich","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeLich","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeLich","GLOBAL",99)
+END
+
+IF
+OR(8)
+See("shadow01")
+See("shadowsu")
+See("shadfi01")
+See("kshadow")
+See("rngsha")
+See("rngsha01")
+See("rngsha03")
+See("sdshadow")
+InParty(Myself)
+!CombatCounter(0)
+Global("K#SeeShadows","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeShadows","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeShadows","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeShadows","GLOBAL",99)
+END
+
+IF
+OR(5)
+See("icyuan02")
+See("kpyuan01")
+See("icyuan01")
+See("icyuan03")
+See("kpsham01")
+InParty(Myself)
+!CombatCounter(0)
+Global("K#SeeYuanTi","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeYuanTi","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeYuanTi","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeYuanTi","GLOBAL",99)
+END
+
+IF
+Delay(10)
+AreaCheck("AR2100")
+InParty(Myself)
+CombatCounter(0)
+Global("K#SeeUnderDark","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeUnderDark","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeUnderDark","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeUnderDark","GLOBAL",59)
+END
+
+IF
+Delay(10)
+AreaCheck("AR6004")
+InParty(Myself)
+CombatCounter(0)
+Global("K#SeeAbazlair","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAbazlair","GLOBAL",2)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeAbazlair","GLOBAL",2)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAbazlair","GLOBAL",59)
+END
+
+IF
+Delay(10)
+OR(7)
+AreaCheck("AR0300")
+AreaCheck("AR0400")
+AreaCheck("AR0500")
+AreaCheck("AR0700")
+AreaCheck("AR0800")
+AreaCheck("AR0900")
+AreaCheck("AR1000")
+InParty(Myself)
+CombatCounter(0)
+Global("K#SeeAmn","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAmn","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeAmn","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeAmn","GLOBAL",59)
+END
+
+IF
+Delay(10)
+AreaCheck("AR1600")
+InParty(Myself)
+CombatCounter(0)
+Global("K#SeeBrynn","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeBrynn","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Delay(2)
+Global("K#SeeBrynn","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeBrynn","GLOBAL",59)
+END
+
+IF
+Delay(6)
+AreaCheck("AR0414")
+InParty(Myself)
+CombatCounter(0)
+Global("K#SeePlanarHell","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeePlanarHell","GLOBAL",1)
+ActionOverride(Myself,StartDialogueNoSet(Player1))
+END
+
+IF
+Global("K#SeePlanarHell","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeePlanarHell","GLOBAL",59)
+END
+
+IF
+AreaCheck("AR0903")
+InParty(Myself)
+CombatCounter(0)
+Global("K#SeeOrderRadiant","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeOrderRadiant","GLOBAL",1)
+StartDialogueNoSet(Player1)
+END
+
+IF
+Delay(2)
+Global("K#SeeOrderRadiant","GLOBAL",1)
+THEN
+RESPONSE #100
+SetGlobal("K#SeeOrderRadiant","GLOBAL",59)
+END
+
+IF
+AreaCheck("AR2102")
+Allegiance(Myself,ENEMY)
+Global("K#BUFF","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobal("K#BUFF","LOCALS",1)
+SetGlobalTimer("K#CastSpell","LOCALS",6)
+DisplayString(Myself,40252)
+ReallyForceSpell(Myself,WIZARD_SPELL_IMMUNITY_NECROMANCY)
+ReallyForceSpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)
+ReallyForceSpell(Myself,WIZARD_SPELL_SHIELD)
+ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+END
+
+IF
+Allegiance(Myself,ENEMY)
+ActionListEmpty()
+OR(5)
+    See(NearestEnemyOf(Myself))
+    See([PC.0.0.CLERIC_ALL])
+    See([PC.0.0.MAGE_ALL])
+    See(WorstAC)
+    See(MostDamagedOf(Myself))
+AreaCheck("AR2102")
+!Allegiance(LastSeenBy(Myself),ENEMY)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),15)
+END
+
+IF
+  Allegiance(Myself,Enemy)
+  AreaCheck("AR2102")
+  !See([PC])
+   Detect([PC])
+THEN
+  RESPONSE #100
+	MoveToObject(Player1)    
+END
+
+IF
+InParty(Myself)
+Global("SheenaJoined","GLOBAL",0)
+THEN
+  RESPONSE #100
+SetGlobal("SheenaJoined","GLOBAL",1)
+END
+
+

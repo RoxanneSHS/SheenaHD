@@ -1,0 +1,45 @@
+IF
+Global("KChange1","Global",1)
+THEN
+RESPONSE #100
+SetGlobal("KChange1","Global",2)
+SetGlobal("SheenRHD","GLOBAL",1)
+ClearAllActions()
+StartCutSceneMode()
+MoveGlobalObject("K#Sheen2","K#Sheena")
+ActionOverride("K#Sheen2",TakeCreatureItems("K#Sheena",ALL))
+Wait(2)
+ActionOverride("K#Sheena",LeaveParty())
+ActionOverride("K#Sheena",EscapeArea())
+Wait(2)
+ActionOverride("K#Sheen2",JoinParty())
+Wait(2)
+EndCutSceneMode()
+END
+
+IF
+Global("KChange1","Global",3)
+THEN
+RESPONSE #100
+SetGlobal("KChange1","Global",0)
+SetGlobal("SheenRHD","GLOBAL",0)
+ClearAllActions()
+StartCutSceneMode()
+MoveGlobalObject("K#Sheena","K#Sheen2")
+ActionOverride("K#Sheena",TakeCreatureItems("K#Sheen2",ALL))
+Wait(2)
+ActionOverride("K#Sheen2",LeaveParty())
+ActionOverride("K#Sheen2",EscapeArea())
+Wait(2)
+ActionOverride("K#Sheena",JoinParty())
+Wait(2)
+EndCutSceneMode()
+END
+
+IF
+!IsActive("K#Sheen2")
+InParty("K#Sheen2")
+THEN
+RESPONSE #100
+Activate("K#Sheen2")
+END
