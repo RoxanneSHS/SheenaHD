@@ -10,6 +10,6 @@ SmallWait(5)
 ActionOverride(Player1,ApplySpellRES("K#PCCON",Player1))
 ActionOverride("K#SHEENA",ApplySpellRES("K#SHECON","K#SHEENA"))
 RESPONSE #10
-CreateVisualEffectObject("SPFDEATH","K#SHEENA")//DEATH EFFECT
+CreateVisualEffectObject("SPFDEATH","K#SHEENA")
 ActionOverride("K#SHEENA",ApplySpellRES("K#KILLS","K#SHEENA"))
 END
