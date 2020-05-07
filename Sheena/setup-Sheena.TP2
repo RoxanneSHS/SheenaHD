@@ -2,7 +2,7 @@ BACKUP ~Sheena\backup~
 //AUTHOR ~j_f_kalban@caramail.com~
 SUPPORT ~Roxanne - http://baldursextendedworld.com/Vanilla_Forums/categories/mod-help or roxanne@baldursextendedworld.com~
 
-VERSION ~v3.0~
+VERSION ~v3.1~
 
 AUTO_TRA ~Sheena/%s~
 
@@ -22,6 +22,10 @@ END
 LANGUAGE ~English~
 	 ~English~
          ~Sheena/English/setup.tra~
+
+LANGUAGE ~Russian (ART BERSERKER & www.aerie.ru. Updated by Prowler. Updated for EE/EET by Serdrick)~
+	 ~Russian~
+         ~Sheena/Russian/setup.tra~
 
 BEGIN @0
 
