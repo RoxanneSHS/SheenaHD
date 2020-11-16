@@ -464,8 +464,8 @@ OR(2)
 THEN
   RESPONSE #100
     SetGlobal("K#HasRedScales","GLOBAL",1)
-    TakePartyItem("SCALER")
     DestroyItem("SCALER")
+    Wait(1)
     GiveItemCreate("SCALER",Player1,0,0,0)
     ActionOverride(Myself,StartDialogueNoSet(Player1))
 END
@@ -478,8 +478,8 @@ OR(2)
 THEN
   RESPONSE #100
     SetGlobal("K#HasRedArmor","GLOBAL",1)
-    TakePartyItem("PLAT18")
     DestroyItem("PLAT18")
+    Wait(1)
     GiveItemCreate("PLAT18",Player1,0,0,0)
     ActionOverride(Myself,StartDialogueNoSet(Player1))
 END
