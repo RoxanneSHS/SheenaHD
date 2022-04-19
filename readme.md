@@ -18,7 +18,7 @@ style='font-size:12.0pt;font-family:"Times New Roman",serif'>A mod originally wr
 
 Sheena is the fruit of a union between a female human and Lord Jierdan Firkraag.<br>
 - Sheena's story begins in Firkraag's lair in a prison cell next to Garren's child. She cannot talk as long as Firkraag is alive.
-- Sheena is a neutral good half red dragon multiclass fighter / wizard. Her half dragon form is
+- Sheena is a neutral good half red dragon multi class fighter / wizard. Her half dragon form is
   hidden most of the time (cities, forests...) to balance the game.
 - Sheena's strength and constitution can not be raised by any item (potions and spells do work).
 - Sheena is limited to two handed swords, quarterstaffs, halberds and darts (an animation limitation).
@@ -27,7 +27,7 @@ Sheena is the fruit of a union between a female human and Lord Jierdan Firkraag.
 - Sheena has a small romance path if other romances are not active, you are through with the friendship talks and your
   character is of neutral or good alignment.
 - Sheena leaves for good if kicked out from your party.
-- Sheena has a half dragon breath ability useable once per day.
+- Sheena has a half dragon breath ability usable once per day.
 - Her ToB content will be expanded over time
 
  
