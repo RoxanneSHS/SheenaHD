@@ -149,7 +149,7 @@ AreaCheck("AR2102")
 !Global("PlayerLooksLikeDrow","GLOBAL",1)
 THEN
 RESPONSE #100
-ApplySpellRES("K#POLYS",Myself)
+SetGlobal("KChange1","Global",1)
 END
 
 IF

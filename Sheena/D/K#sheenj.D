@@ -1110,7 +1110,7 @@ Global("SheenRHD","GLOBAL",1)~ THEN UDSILVER sheenaudsilverl
 == UDSILVER 
 @8329
 == SHEENAJ
-@8330 DO ~SetGlobal("StartsSoon","GLOBAL",1) ApplySpellRES("K#POLYB",Myself)~
+@8330 DO ~SetGlobal("StartsSoon","GLOBAL",1) SetGlobal("KChange1","Global",3)~
 == UDSILVER
 @8331 
 EXTERN UDSILVER 0
